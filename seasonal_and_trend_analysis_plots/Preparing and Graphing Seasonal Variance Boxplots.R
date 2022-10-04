@@ -8,6 +8,9 @@ library(gridExtra)
 library(ggplot2)
 library(reshape)
 
+# Directories that you may need to change
+daily_data_save <- "~/Desktop/github/ResOpsUS_Analysis/data/HUC_FF/daily_ff"
+
 # Set Up and Initialize all the lists that we have
 greater_50_list <- c(3,5,6,8,9,10,11,12,14,15,16,18)# Use this one first because the most complete records
 basin_names <- c("d. South Atlantic", "c. Ohio", "a. Tennessee", "b. Lower Mississippi", 
@@ -25,7 +28,7 @@ for (m in 1:length(greater_50_list)){
   huc2 <- greater_50_list[m]
   
   # read in the yearly and datily data files
-  setwd("~/Desktop/Paper_2/HUC2 Water Year and Monthly Averages /final_data")
+  setwd(daily_data_save)
   data_file <- paste0("HUC", huc2, "daily_averages.csv")
   daily_file <- read.csv( file = data_file, stringsAsFactors = FALSE)
   

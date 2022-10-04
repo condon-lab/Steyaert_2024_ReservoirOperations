@@ -7,6 +7,9 @@ library(lubridate)
 library(gridExtra)
 library(reshape)
 
+# Directories that may need to change
+daily_data_save <- "~/Desktop/github/ResOpsUS_Analysis/data/HUC_FF/daily_ff"
+
 # 1. Set Up that involves HUC2 list, ardity order for panels, basin names and matrices
 
 greater_50_list <- c(3,5,6,8,9,10,11,12,14,15,16,18)# 
@@ -44,7 +47,7 @@ month_matrix_min$month <-c( "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Au
     huc2 <- greater_50_list[p]
     
     # read in the daily files
-    setwd("~/Desktop/Paper_2/HUC2 Water Year and Monthly Averages /final_data")
+    setwd(daily_data_save)
     
     data_file <- paste0("HUC", huc2, "daily_averages.csv")
     daily_file <- read.csv( file = data_file, stringsAsFactors = FALSE)

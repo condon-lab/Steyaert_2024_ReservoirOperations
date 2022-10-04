@@ -9,18 +9,25 @@ library(gridExtra)
 library(trend)
 library(zyp)
 
+# directories needed (MAY NEED TO BE CHANGED)
+daily_data_save <- "~/Desktop/github/ResOpsUS_Analysis/data/daily_ff"
+monthly_data_save <- "~/Desktop/github/ResOpsUS_Analysis/data/monthly_ff"
+spi_directory <- "~/Desktop/Datasets/github/ResOpsUS_Analysis/other_data/"
+
+
 # read in all the HUC2 files and get the ts of the conus values
 huc2_list <- seq(1,18, by =1)
 
-# FIGURE OUT WHICH DATA I NEED TO PUT INTO THE DATASET
 # Read in Data
-setwd("~/Desktop/Paper_2/HUC2 Water Year and Monthly Averages /final_data")
-
+setwd(daily_data_save)
 daily_files <- list.files(pattern = "daily_averages")
+
+setwd(monthly_data_save)
 monthly_files <- list.files(pattern = "monthly_averages")
 
 for (l in 1:length(daily_files)){
   file_name <- daily_files[l]
+  setwd(daily_data_save)
   daily_data <- read.csv(file = file_name, stringsAsFactors = FALSE)
   filtered_data <- daily_data %>% filter(all_years >= 1980) %>% filter(all_years <2020)
   if (l ==1){
@@ -44,6 +51,7 @@ total_daily$fraction_filled <- total_daily$average_storage/total_daily$storage_c
 #### Monthly loop #####
 for (l in 1:length(monthly_files)){
   file_name <- monthly_files[l]
+  setwd(monthly_data_save)
   monthly_data <- read.csv(file = file_name, stringsAsFactors = FALSE)
   filtered_data <- monthly_data %>% filter(all_years >= 1980) %>% filter(all_years <2020)
   if (l ==1){
@@ -112,7 +120,7 @@ var_df <- as.data.frame(var_df, stringsAsFactors = F)
 colnames(var_df) <- c("water_year", "variance")
 
 ###### Add in SPI Values from NCAR dataset ######
-setwd("~/Desktop/Datasets/NCAR_SPI_SPEI/")
+setwd(spi_directory)
 SPI <- read.csv( file = "SPI_Water_Year_Avg_HUC2.csv", stringsAsFactors = FALSE)
 
 SPI_filtered <- SPI %>% filter(X >=1980)
@@ -188,7 +196,6 @@ storcap_graphing <- melt(final_graphing, id.vars = "all_years")
 
 resopsus_grand <- ggplot(storcap_graphing, mapping = aes(x = all_years, y = value,group = variable)) +
   geom_line(aes(linetype = variable))+
-  #scale_x_date(limits = c(as.Date("1950-01-01"), as.Date("2020-01-01")))+
   ylab("Storage Capacity (MCM)")+
   scale_linetype_manual("Data Source", values = c( 1, 2))+
 

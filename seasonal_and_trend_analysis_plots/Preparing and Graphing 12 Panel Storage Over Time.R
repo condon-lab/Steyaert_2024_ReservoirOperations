@@ -12,6 +12,11 @@ library(RColorBrewer)
 library(trend)
 library(zyp)
 
+# directories that may need to change
+monthly_data_save <- "~/Desktop/github/ResOpsUS_Analysis/data/monthly_ff"
+slope_save <- "~/Desktop/github/ResOpsUS_Analysis/data/"
+other_data_directory <- "~/Desktop/github/ResOpsUS_Analysis/data/other_data"
+
 # 1.Set up and Initialize all the necessary variables for plotting 
 aridity_order <- c("a. Tennessee", "b. Lower Mississippi", "c. Ohio","d. South Atlantic","e. Sourris Red Rainy", 
                    "f. Arkansas White Red",
@@ -36,7 +41,7 @@ sen_slope_data <- matrix(data = NA, nrow = 12, ncol = 4)
 for (p in 1:length(greater_50_list)){
   huc2 <- greater_50_list[p]
   # We used the the monthly averages to calculate the trend as there are some instances where an October 1st value is missing
-  setwd("~/Desktop/Paper_2/HUC2 Water Year and Monthly Averages /final_data")
+  setwd(monthly_data_save)
   monthly_file <-  paste0("HUC", huc2, "monthly_averages.csv")
   monthly_data <- read.csv(file=monthly_file, stringsAsFactors = F)
   
@@ -77,11 +82,11 @@ colnames(sen_slope_data) <- c("HUC2", "slope", "pvalue", "median_stor")
 
 graphing_slopes<- cbind(basin_names, sen_slope_data)
 
-setwd("~/Desktop/Paper_2/HUC2 Water Year and Monthly Averages /AGU PLOTS/")
+setwd(slope_save)
 write.csv(graphing_slopes,"All_slopes.csv", row.names = F)
 
 ## 5. Create Figure 6 a ###
-# Plot of stroage trends over time for each of the 12 basins
+# Plot of storage trends over time for each of the 12 basins
 
 colnames(oct_all_data) <- basin_names
 colnames(oct_all_predicted) <- basin_names
@@ -96,8 +101,9 @@ oct_all_predicted$water_year <- seq(1980,2019, by =1)
 
 # Drought Periods are pulled from SPI water year values
 # Rectangles are plotted for water years that have SPI values less thant -0.3
+# SPI values come from NCAR https://climatedataguide.ucar.edu/climate-data/standardized-precipitation-index-spi
 
-setwd("~/Desktop/Paper_2/HUC2 Water Year and Monthly Averages /")
+setwd(other_data_directory)
 all_drought <- read.csv(file ="Drought_less_than_0.3.csv", stringsAsFactors = F)
 
 melted_oct_all <- melt(oct_all_data, id.vars ="water_year")
