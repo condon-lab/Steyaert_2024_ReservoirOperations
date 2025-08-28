@@ -2,7 +2,7 @@
 *Developed by Jennie C. Steyaert and Laura E. Condon to analyze historical reservoir data from ResOpsUS (https://doi.org/10.5281/zenodo.5367383)*
 
 ## Description
-This respository contains all the codes necessary to replicate the analysis in Steyaert & Condon, 2022. Each code contains numbered steps that explain what the chunk of code is doing. Some codes, such as that necessary to create Standardized Streamflow Indices (SSI values) contains more detailed notes on what exactly each line does and where specific values are coming from.
+This respository contains all the codes necessary to replicate the analysis in [Steyaert & Condon, 2024](https://doi.org/10.5194/hess-28-1071-2024). Each code contains numbered steps that explain what the chunk of code is doing. Some codes, such as that necessary to create Standardized Streamflow Indices (SSI values) contains more detailed notes on what exactly each line does and where specific values are coming from.
 
 ## Citation
 [INSERT WHEN I HAVE IT]
