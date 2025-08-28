@@ -5,7 +5,7 @@
 This respository contains all the codes necessary to replicate the analysis in [Steyaert & Condon, 2024](https://doi.org/10.5194/hess-28-1071-2024). Each code contains numbered steps that explain what the chunk of code is doing. Some codes, such as that necessary to create Standardized Streamflow Indices (SSI values) contains more detailed notes on what exactly each line does and where specific values are coming from.
 
 ## Citation
-[INSERT WHEN I HAVE IT]
+> *Steyaert, J. C. and Condon, L. E.: Synthesis of historical reservoir operations from 1980 to 2020 for the evaluation of reservoir representation in large-scale hydrologic models, Hydrol. Earth Syst. Sci., 28, 1071–1088, https://doi.org/10.5194/hess-28-1071-2024, 2024.*
 
 ## This GitHub Respository contains three folders based on each section of the paper and the corresponding data:
 1. Data
